@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Daily Timetable{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Daily Timetable</h1>
+    {% if lectures_today %}
+        <ul>
+            {% for lecture in lectures_today %}
+                <li>{{ lecture.name }} - {{ lecture.course.name }} - {{ lecture.start_time }} to {{ lecture.end_time }} in {{ lecture.classroom.name }} <a href="{% url 'lecture_detail' lecture.pk %}" class="btn btn-info">Details</a></li>
+            {% endfor %}
+        </ul>
+        <p><a href="{% url 'create_timetable' %}" class="btn btn-primary">Create Timetable</a></p>
+    {% else %}
+        <p>No lectures scheduled for today.</p>
+        <p><a href="{% url 'create_timetable' %}" class="btn btn-primary">Create Timetable</a></p>
+    {% endif %}
+</div>
+{% endblock %}

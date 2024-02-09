@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete "{{ lecture.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'daily_timetable' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
